@@ -8,11 +8,7 @@ pipeline{
         jdk 'jdk 11'
     }
     stages{
-        stage("building"){
-            steps{
-                sh "mvn clean package"
-            }
-        }
+	    
 	    stage('Testing') {
             steps {
                 echo 'Testing the application...'
@@ -20,6 +16,12 @@ pipeline{
             }
         }
 
+        stage("building"){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+	    
     }
     post{
          always{
