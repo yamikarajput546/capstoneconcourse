@@ -1,31 +1,28 @@
 ---
 resources:
-  - name:code
-    type:git
-    source:
+  - name: code
+    type: git
+    source: 
       uri: https://github.com/yamikarajput546/capstoneconcourse
-      branch: Development
-
-    
+      branch: main
 
 jobs:
-  - name:clean
-    public :true
-    plan:
-      - get:code
+  - name: compile
+    plan: 
+      - get: code
         trigger: true
-        - task : clean
-          config:
-            platform:linux
-            image_resource:
-              type: docker-image
-              source:
-                repository: maven
-              inputs:
-                - name: code
-              run:
-                path: mvn
-                args:
-                  - package
-                  - -f
-                  - code/pom.xml
+      - task: clean-compile
+        config: 
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: 
+              repository: maven
+          inputs:
+            - name: code
+          run: 
+            path: mvn
+            args: 
+              - package
+              - -f
+              - code/pom.xml 
