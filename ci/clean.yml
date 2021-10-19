@@ -1,0 +1,30 @@
+---
+resources:
+  - name:code
+    type:git
+    source:
+      uri: https://github.com/yamikarajput546/spring-boot-example
+      branch: main
+
+    
+
+jobs:
+  - name:clean
+    plan:
+      - get:code
+        trigger: true
+        - task : clean
+          config:
+            platform:linux
+            image_resource:
+              type: docker-image
+              source:
+                repository: maven
+              inputs:
+                - name: code
+              run:
+                path: mvn
+                args:
+                  - clean
+                  - -f
+                  - code/pom.xml
