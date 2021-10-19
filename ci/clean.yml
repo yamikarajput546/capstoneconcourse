@@ -11,7 +11,7 @@ jobs:
     plan: 
       - get: code
         trigger: true
-      - task: clean-compile
+      - task: clean
         config: 
           platform: linux
           image_resource:
