@@ -26,6 +26,6 @@ jobs:
               run:
                 path: mvn
                 args:
-                  - clean
+                  - test
                   - -f
                   - code/pom.xml
